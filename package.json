@@ -2,7 +2,9 @@
   "name": "kubernetes.io",
   "private": true,
   "scripts": {
-    "build": "hugo --cleanDestinationDir --minify --environment development",
+    "install-hugo": "[ -f node_modules/.bin/hugo ] || (HUGO_VERSION=0.144.2 && curl -L \"https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz\" | tar -xz -C node_modules/.bin hugo)",
+    "prebuild": "(npm run install-hugo || true) && (git submodule update --init --recursive --depth 1 || true)",
+    "build": "node_modules/.bin/hugo --cleanDestinationDir --minify --environment development",
     "update:pkgs": "npx npm-check-updates -u"
   },
   "devDependencies": {
