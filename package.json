@@ -2,6 +2,7 @@
   "name": "kubernetes.io",
   "private": true,
   "scripts": {
+    "build": "hugo --cleanDestinationDir --minify --environment development",
     "update:pkgs": "npx npm-check-updates -u"
   },
   "devDependencies": {
